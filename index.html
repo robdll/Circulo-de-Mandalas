@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Círculo de Mandalas - Mulheres em Transição</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.7;
+            color: #4a4a4a;
+            background: linear-gradient(135deg, #fdfbfb 0%, #f7e8e8 100%);
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        header {
+            background: linear-gradient(135deg, #d4a5a5 0%, #b08686 100%);
+            padding: 60px 40px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: subtle-move 20s linear infinite;
+        }
+        
+        @keyframes subtle-move {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+            animation: fadeInDown 1s ease-out;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .small-title {
+            font-size: 1.2em;
+            font-weight: 300;
+            letter-spacing: 3px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            text-transform: uppercase;
+        }
+        
+        .main-title {
+            font-size: 2.8em;
+            font-weight: 400;
+            line-height: 1.3;
+            margin-bottom: 35px;
+            letter-spacing: 1px;
+        }
+        
+        .mandala-container {
+            width: 220px;
+            height: 220px;
+            margin: 0 auto;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            border: 4px solid rgba(255,255,255,0.3);
+            animation: mandalaGlow 3s ease-in-out infinite;
+            transition: transform 0.3s ease;
+        }
+        
+        .mandala-container:hover {
+            transform: scale(1.05) rotate(5deg);
+        }
+        
+        @keyframes mandalaGlow {
+            0%, 100% {
+                box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            }
+            50% {
+                box-shadow: 0 10px 60px rgba(255,255,255,0.4), 0 0 30px rgba(255,255,255,0.3);
+            }
+        }
+        
+        .mandala-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .content {
+            padding: 50px 40px;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .section:nth-child(1) { animation-delay: 0.2s; }
+        .section:nth-child(2) { animation-delay: 0.4s; }
+        .section:nth-child(3) { animation-delay: 0.6s; }
+        .section:nth-child(4) { animation-delay: 0.8s; }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        h2 {
+            color: #b08686;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            font-weight: 400;
+            border-bottom: 2px solid #f0d9d9;
+            padding-bottom: 10px;
+            text-align: center;
+            transition: color 0.3s ease;
+        }
+        
+        h2:hover {
+            color: #d4a5a5;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .highlight-box {
+            background: #faf5f5;
+            padding: 30px;
+            border-left: 4px solid #d4a5a5;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .highlight-box:hover {
+            background: #f5eded;
+            border-left-width: 8px;
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .facilitadora {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            background: #f9f2f2;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 30px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .facilitadora:hover {
+            background: #f5eded;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .facilitadora-info h3 {
+            color: #b08686;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        
+        .programa {
+            background: white;
+            border: 2px solid #f0d9d9;
+            border-radius: 8px;
+            padding: 25px;
+        }
+        
+        .programa-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #f0d9d9;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .programa-item:hover {
+            padding-left: 15px;
+            background: #faf5f5;
+            border-radius: 8px;
+        }
+        
+        .programa-item:last-child {
+            border-bottom: none;
+        }
+        
+        .programa-item strong {
+            color: #b08686;
+            display: block;
+            margin-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+        
+        .programa-item:hover strong {
+            color: #d4a5a5;
+        }
+        
+        .cta-section {
+            text-align: center;
+            padding: 50px 40px;
+            background: linear-gradient(135deg, #f9f2f2 0%, #faf5f5 100%);
+        }
+        
+        .cta-section h2 {
+            border: none;
+            margin-bottom: 25px;
+        }
+        
+        .whatsapp-btn {
+            display: inline-block;
+            background: #25D366;
+            color: white;
+            padding: 18px 45px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+        
+        .whatsapp-btn:hover {
+            background: #128C7E;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+            animation: none;
+        }
+        
+        .info-note {
+            color: #888;
+            font-size: 0.95em;
+            margin-top: 20px;
+            font-style: italic;
+        }
+        
+        .local-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(10px);
+            padding: 12px 25px;
+            border-radius: 30px;
+            margin-top: 20px;
+            font-size: 0.95em;
+            border: 2px solid rgba(255,255,255,0.4);
+            animation: fadeIn 1.5s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #b08686;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95em;
+            margin-top: 15px;
+        }
+        
+        .social-link:hover {
+            color: #d4a5a5;
+            transform: translateX(5px);
+        }
+        
+        .journey-quote {
+            font-style: italic;
+            color: #7a7a7a;
+            border-left: 3px solid #d4a5a5;
+            padding-left: 20px;
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+        
+        /* Botão flutuante do WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 35px;
+            box-shadow: 2px 2px 15px rgba(0,0,0,0.3);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            animation: bounce 2s ease-in-out infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            transform: scale(1.1);
+            animation: none;
+        }
+        
+        footer {
+            background: #4a4a4a;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+        
+        ul li {
+            transition: all 0.3s ease;
+        }
+        
+        ul li:hover {
+            transform: translateX(10px);
+            color: #b08686;
+        }
+        
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2em;
+            }
+            
+            .small-title {
+                font-size: 1em;
+            }
+            
+            .mandala-container {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .local-badge {
+                font-size: 0.85em;
+                padding: 10px 20px;
+            }
+            
+            .content {
+                padding: 30px 20px;
+            }
+            
+            .facilitadora {
+                flex-direction: column;
+            }
+            
+            header {
+                padding: 40px 20px;
+            }
+            
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 28px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <p class="small-title">Círculo de Mandalas</p>
+                
+                <h1 class="main-title">Mulheres em Transição:<br>Redescobrindo a Voz Interior</h1>
+                
+                <div class="mandala-container">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Cdefs%3E%3CradialGradient id='grad1'%3E%3Cstop offset='0%25' style='stop-color:%23c4b5fd;stop-opacity:1' /%3E%3Cstop offset='30%25' style='stop-color:%2393c5fd;stop-opacity:1' /%3E%3Cstop offset='60%25' style='stop-color:%23a78bfa;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23f9a8d4;stop-opacity:1' /%3E%3C/radialGradient%3E%3CradialGradient id='grad2'%3E%3Cstop offset='0%25' style='stop-color:%23fde68a;stop-opacity:1' /%3E%3Cstop offset='50%25' style='stop-color:%23f472b6;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%239333ea;stop-opacity:1' /%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='200' cy='200' r='190' fill='url(%23grad1)'/%3E%3Cpath d='M 200 100 Q 250 150 200 200 Q 150 150 200 100 M 300 200 Q 250 250 200 200 Q 250 150 300 200 M 200 300 Q 150 250 200 200 Q 250 250 200 300 M 100 200 Q 150 150 200 200 Q 150 250 100 200' fill='url(%23grad2)' opacity='0.6'/%3E%3Ccircle cx='200' cy='200' r='140' fill='none' stroke='white' stroke-width='2' opacity='0.5'/%3E%3Ccircle cx='200' cy='200' r='100' fill='none' stroke='white' stroke-width='2' opacity='0.5'/%3E%3Ccircle cx='200' cy='200' r='60' fill='none' stroke='white' stroke-width='2' opacity='0.5'/%3E%3Ccircle cx='200' cy='80' r='10' fill='white' opacity='0.8'/%3E%3Ccircle cx='200' cy='320' r='10' fill='white' opacity='0.8'/%3E%3Ccircle cx='80' cy='200' r='10' fill='white' opacity='0.8'/%3E%3Ccircle cx='320' cy='200' r='10' fill='white' opacity='0.8'/%3E%3Ccircle cx='260' cy='140' r='8' fill='white' opacity='0.7'/%3E%3Ccircle cx='140' cy='140' r='8' fill='white' opacity='0.7'/%3E%3Ccircle cx='140' cy='260' r='8' fill='white' opacity='0.7'/%3E%3Ccircle cx='260' cy='260' r='8' fill='white' opacity='0.7'/%3E%3C/svg%3E" alt="Mandala do Círculo">
+                </div>
+                
+                <div class="local-badge">
+                    📍 Encontro Presencial em Vitória da Conquista • Evento Inédito
+                </div>
+            </div>
+        </header>
+        
+        <div class="content">
+            <div class="section">
+                <h2>Um Convite ao Encontro Profundo</h2>
+                <p>
+                    Cada fase da vida é marcada pela sensação de estar em uma encruzilhada, um momento em que as certezas se dissolvem e surgem perguntas que antes não ousávamos fazer. Quem sou eu além dos papéis que desempenho? O que silenciei em mim para caber nas expectativas alheias? Que mulher desejo ser daqui em diante?
+                </p>
+                <p>
+                    A partir dos 29 anos, no início da fase adulta, essas perguntas ganham uma urgência diferente. Esta não é apenas uma transição de idade — é um portal para a autenticidade. Um chamado para reconectar com aquela voz interior que, tantas vezes, foi abafada por julgamentos externos que aprendemos a reproduzir, inclusive contra nós mesmas e nossas irmãs.
+                </p>
+                
+                <div class="highlight-box">
+                    <p style="font-size: 1.1em; margin: 0 0 15px 0;">
+                        <strong>Convidamos você para um encontro presencial de terapia mandálica de base junguiana</strong> — um espaço sagrado onde mulheres maduras (29+) podem se encontrar consigo mesmas e com outras que compartilham desta jornada transformadora.
+                    </p>
+                    <p style="font-size: 0.95em; color: #888; margin: 0;">
+                        O primeiro círculo deste tipo em Vitória da Conquista.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>O Que Vamos Explorar Juntas</h2>
+                <p>
+                    Através do desenho de mandalas e do diálogo profundo com nosso inconsciente pessoal, iremos:
+                </p>
+                <ul style="margin-left: 30px; margin-top: 15px;">
+                    <li style="margin-bottom: 12px;">Trazer à consciência as vozes externas que nos silenciaram e que internalizamos</li>
+                    <li style="margin-bottom: 12px;">Reconhecer os julgamentos que projetamos em outras mulheres — e em nós mesmas</li>
+                    <li style="margin-bottom: 12px;">Conectar com a sabedoria do feminino que nos une a todas</li>
+                    <li style="margin-bottom: 12px;">Honrar este momento de transição como um renascimento</li>
+                    <li style="margin-bottom: 12px;">Criar um espaço de sororidade genuína, livre de competição e julgamento</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>Sobre a Facilitadora</h2>
+                <div class="facilitadora">
+                    <div class="facilitadora-info">
+                        <h3>Cintya Flores</h3>
+                        <div class="journey-quote">
+                            "Busquei respostas na aurora boreal da Suécia, nos desertos da Argentina, nas montanhas dos Alpes, nas comunidades do México... até compreender que a jornada mais importante é a volta para casa — para o centro que habita em cada uma de nós."
+                        </div>
+                        <p>
+                            Arteterapeuta, analista junguiana e psicóloga em formação, eu conheço bem intimamente esse caminho da transformação porque tive que atravessar o medo e encontrar a coragem de abandonar uma carreira acadêmica consolidada, mas que me deixava infeliz, para retornar aos estudos e seguir o chamado da minha alma — a busca pela realização genuína através da psicologia profunda e da arteterapia.
+                        </p>
+                        <p>
+                            Minha jornada pessoal de reinvenção aos quarenta me tornou não apenas uma facilitadora capacitada, mas uma companheira que compreende, de dentro, as dores e as possibilidades deste momento de vida. Acredito que cada mulher carrega em si uma mandala única — um centro sagrado esperando ser redescoberto.
+                        </p>
+                        <a href="https://www.instagram.com/cintya_flor/" target="_blank" class="social-link">
+                            📷 @cintya_flor
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>Informações Práticas</h2>
+                <div style="background: #faf5f5; padding: 25px; border-radius: 8px; margin-bottom: 30px;">
+                    <p style="text-align: center; margin-bottom: 15px;"><strong style="font-size: 1.1em; color: #b08686;">📅 Sábado, 24 de Janeiro de 2025</strong></p>
+                    <p style="text-align: center; margin-bottom: 15px;"><strong>🕐 Horário:</strong> 14h às 18h (4 horas)</p>
+                    <p style="text-align: center; margin-bottom: 15px;"><strong>📍 Local:</strong> Condomínio Dona Miraí, Vitória da Conquista</p>
+                    <p style="text-align: center; margin-bottom: 15px;"><strong>👭 Vagas:</strong> 8 mulheres (grupo íntimo)</p>
+                    <p style="text-align: center; margin-bottom: 15px;"><strong>💰 Investimento:</strong> R$ 100,00<br>
+                    <span style="font-size: 0.9em; color: #888;">(Inclui todos os materiais artísticos de qualidade para criação da sua mandala)</span></p>
+                    <p style="text-align: center; margin-bottom: 0;"><strong>🍽️ Encerramento:</strong> Compartilhamento de alimentos — cada participante traz algo para dividirmos juntas</p>
+                </div>
+                
+                <h2>Estrutura do Encontro</h2>
+                <p style="text-align: center;">Um mergulho de 4 horas em um espaço seguro e acolhedor:</p>
+                <div class="programa">
+                    <div class="programa-item">
+                        <strong>🌸 Abertura e Movimento Corporal</strong>
+                        Despertar a presença através do corpo, ancorando-nos no aqui e agora
+                    </div>
+                    <div class="programa-item">
+                        <strong>🧘‍♀️ Meditação de Intenção</strong>
+                        Conectar com a intenção profunda que nos trouxe ao círculo
+                    </div>
+                    <div class="programa-item">
+                        <strong>💬 Apresentações</strong>
+                        Momento breve de nos reconhecermos umas às outras
+                    </div>
+                    <div class="programa-item">
+                        <strong>🎨 Criação das Mandalas</strong>
+                        Desenho intuitivo como portal para o inconsciente pessoal
+                    </div>
+                    <div class="programa-item">
+                        <strong>🔮 Leitura e Interpretação</strong>
+                        Compartilhamento e diálogo simbólico com nossas criações
+                    </div>
+                    <div class="programa-item">
+                        <strong>🌙 Encerramento</strong>
+                        Integração e celebração do processo vivido
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="cta-section">
+            <h2>Garanta Sua Vaga</h2>
+            <p style="max-width: 600px; margin: 0 auto 30px;">
+                <strong>Data confirmada: 24 de janeiro de 2025 (sábado)</strong><br>
+                Apenas 8 vagas disponíveis para garantir a intimidade e profundidade do círculo.<br>
+                Entre no grupo do WhatsApp para confirmar sua presença.
+            </p>
+            
+            <a href="https://chat.whatsapp.com/DGD0UQ2urzKHLKVBAzJP0l" class="whatsapp-btn" target="_blank">
+                💬 Quero Participar - Entrar no Grupo
+            </a>
+            <p class="info-note">
+                Ao clicar, você entrará no grupo de WhatsApp do Círculo onde poderá confirmar sua participação e receber todas as informações sobre local e preparação.
+            </p>
+        </div>
+        
+        <footer>
+            <p>Círculo de Mandalas - Mulheres em Transição | Facilitação: Cintya Flores</p>
+            <p style="margin-top: 15px;">
+                <a href="https://www.instagram.com/cintya_flor/" target="_blank" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.9'">
+                    📷 Instagram: @cintya_flor
+                </a>
+                <span style="margin: 0 10px; opacity: 0.5;">•</span>
+                <a href="https://chat.whatsapp.com/DGD0UQ2urzKHLKVBAzJP0l" target="_blank" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.9'">
+                    💬 Grupo WhatsApp
+                </a>
+            </p>
+            <p style="margin-top: 10px; font-size: 0.85em; opacity: 0.8; font-style: italic;">
+                "No centro de cada mulher existe uma mandala inteira, esperando ser vista."
+            </p>
+        </footer>
+    </div>
+    
+    <!-- Botão flutuante do WhatsApp -->
+    <a href="https://wa.me/5577981601165?text=Olá%20Cintya!%20Tenho%20interesse%20no%20Círculo%20de%20Mandalas%20-%20Mulheres%20em%20Transição.%20Gostaria%20de%20mais%20informações." class="whatsapp-float" target="_blank">
+        💬
+    </a>
+</body>
+</html>
